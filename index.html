@@ -1,0 +1,136 @@
+<!-- Note on AI Collaboration:
+   Claude AI was used as a coding assistant.
+   The final implementation was reviewed, adapted, and thoroughly tested by the author.  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueLib Catalogue | BlueCrest College Library</title>
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header: logo, site name, menu and student -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">
+                <img src="assets/logo.png" alt="BlueCrest logo" class="brand-logo">
+                <h1 class="brand-name">BlueLib</h1>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#catalogue" class="nav-link is-active">Catalogue</a>
+                <a href="#add-book" class="nav-link">Add Book</a>
+            </nav>
+
+            <div class="user-chip">
+                <div class="user-info">
+                    <span class="user-id">400622039061</span>
+                    <span class="user-name">Allaina Yeboah</span>
+                </div>
+                <span class="avatar">AY</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Catalogue: title, search, filters and the book cards -->
+        <section id="catalogue">
+            <h2 class="page-title">BlueLib Catalogue</h2>
+            <p class="page-lead">Explore, search, and borrow curriculum textbooks and academic materials for your courses.</p>
+
+            <div class="toolbar">
+                <label for="search-input" class="visually-hidden">Search books</label>
+                <input type="search" id="search-input" class="search-input" placeholder="Search by title, author, or keyword...">
+
+                <!-- The category buttons (All, IT, Business...) are added here by app.js -->
+                <div id="chips" class="chips"></div>
+
+                <label class="check">
+          <input type="checkbox" id="available-only"> Available only
+        </label>
+            </div>
+
+            <div class="list-head">
+                <p id="showing" class="showing">Showing 0 volumes</p>
+                <p id="loan-period" class="loan">Standard Borrow: 14 Days</p>
+            </div>
+
+            <!-- The book cards are added here by app.js -->
+            <div id="book-grid" class="book-grid"></div>
+            <p id="empty-state" class="empty-state" hidden>No books match your search. Try a different title or category.</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- Add Book form -->
+        <section id="add-book" class="form-card">
+            <h2 class="form-title">Add Book to Catalogue</h2>
+            <p class="form-lead">Register new academic volumes, course textbooks, or research manuscripts.</p>
+
+            <form id="add-book-form" novalidate>
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="book-title">Book Title <span class="req">*</span></label>
+                        <input type="text" id="book-title" placeholder="e.g. Operating Systems: Three Easy Pieces">
+                    </div>
+
+                    <div class="field">
+                        <label for="book-author">Author / Contributor <span class="req">*</span></label>
+                        <input type="text" id="book-author" placeholder="e.g. Remzi H. Arpaci-Dusseau">
+                    </div>
+
+                    <div class="field">
+                        <label for="book-category">Category <span class="req">*</span></label>
+                        <select id="book-category">
+              <option value="">Select category...</option>
+            </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="book-copies">Copies Available <span class="req">*</span></label>
+                        <input type="number" id="book-copies" min="0" step="1" placeholder="e.g. 5">
+                    </div>
+
+                </div>
+
+                <!-- Error or success message (filled in by app.js) -->
+                <p id="form-message" class="form-message" hidden></p>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-purple">+ Add Book</button>
+                    <button type="reset" class="btn btn-outline" id="reset-btn">Reset Form</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer: name and student ID -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-brand">BlueLib</span>
+            <p>Submitted by: Allaina Yeboah | Roll Number: 400622039061 | BlueCrest College Library</p>
+        </div>
+    </footer>
+
+    <!-- Notification (filled in by app.js) -->
+    <div id="toast" class="toast toast-success" hidden>
+        <span id="toast-icon" class="toast-icon"></span>
+        <span id="toast-text" class="toast-text"></span>
+        <button type="button" class="toast-close" onclick="closeToast()" aria-label="Close notification">&times;</button>
+    </div>
+
+    <!-- data.js must load first, because app.js uses its data -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
